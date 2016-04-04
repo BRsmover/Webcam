@@ -1,5 +1,7 @@
 <?php
 // In this file the pictures are shot, copied together and saved in a directory
+// IP of webcam
+$ip = "127.0.0.1";
 
 // ---------------------------- Step 1 ----------------------------
 // Get date, check if folder for day exists (create if not), check if folder for hour exists (create if not) and set
@@ -37,16 +39,27 @@ echo $path;
 
 // ---------------------------- Step 2 ----------------------------
 // Shoot photos with webcam
-// turn to the far left
+// Set turning speed
+header("Location: http://" . $ip . "/cgi-bin/camtrl.cgi?speedpan=2");
+// Enable snapshots
+header("Location: http://" . $ip . "/cgi-bin/admin/gen-eventd-conf.cgi?snashot_enable=1");
 
-// loop to move right, make a picture and repeat that
+// Turn to home position then turn to the far left
+header("Location: http://" . $ip . "/cgi-bin/camtrl.cgi?move=home");
+header("Location: http://" . $ip . "/cgi-bin/camtrl.cgi?move=left");
+header("Location: http://" . $ip . "/cgi-bin/camtrl.cgi?move=left");
 
+// Loop to move right, make a picture, save it to temp and repeat that four times
+for($i = 1, $i <= 4, $i++) {
+    $i = file_put_contents("images/temp/" . $i, fopen("http://" . $ip . "/cgi-bin/video.jpg", "r");
+    header("Location: http://" . $ip . "/cgi-bin/camtrl.cgi?move=right");
+}
 
 // ---------------------------- Step 3 ----------------------------
 // Put them together with GD Library
 
 
 // ---------------------------- Step 4 ----------------------------
-// Save them into above specified path - Format: "panorama-webcam_d-m-Y_h-i.png"
+// Save them into above specified path - Format: "panorama-webcam_d-m-Y_h-i.png" and return to homepage
 
 ?>
