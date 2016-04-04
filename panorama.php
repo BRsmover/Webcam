@@ -6,7 +6,7 @@ $ip = "127.0.0.1";
 // ---------------------------- Step 1 ----------------------------
 // Get date, check if folder for day exists (create if not), check if folder for hour exists (create if not) and set
 // this one as path
-$date = date('d-m-Y_h-i');
+$date = date('d-m-Y_H-i');
 // Split date
 $underscore = explode("_", $date);
 $day = $underscore[0];
