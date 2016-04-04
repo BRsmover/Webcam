@@ -3,7 +3,7 @@
 // Require the Twig Autoloader
 require_once('libraries/Twig/lib/Twig/Autoloader.php');
 // Require the functions
-require_once('functions.php');
+require_once('siteManagement.php');
 
 Twig_Autoloader::register();
 

@@ -17,5 +17,4 @@ function parseSite($site, $data) {
 	$template = $twig->loadTemplate($site . ".html");
 	return $template->render($data);
 }
-
 ?>
