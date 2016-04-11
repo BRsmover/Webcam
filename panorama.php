@@ -101,4 +101,9 @@ imagedestroy($second);
 imagedestroy($third);
 imagedestroy($fourth);
 imagedestroy($panorama);
+
+// ---------------------------- Step 5 ----------------------------
+// Redirect to home where newest image is shown
+header("Location: index.php");
+die();
 ?>
