@@ -36,7 +36,7 @@ if(!is_dir("images/" . $day . "/" . $hour)) {
 // Set path
 $path = "images/" . $day . "/" . $hour;
 
-/*// ---------------------------- Step 2 ----------------------------
+// ---------------------------- Step 2 ----------------------------
 // Shoot photos with webcam
 $left = "http://" . $ip . "/cgi-bin/camctrl.cgi?move=left";
 $right = "http://" . $ip . "/cgi-bin/camctrl.cgi?move=right";
@@ -64,7 +64,7 @@ for($i = 1; $i <= 4; $i++) {
     sleep(2);
     fopen($right, "r");
     sleep(2);
-}*/
+}
 
 // ---------------------------- Step 3 ----------------------------
 // Put them together with GD Library
