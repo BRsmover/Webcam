@@ -36,7 +36,7 @@ if(!is_dir("images/" . $day . "/" . $hour)) {
 // Set path
 $path = "images/" . $day . "/" . $hour;
 
-// ---------------------------- Step 2 ----------------------------
+/*// ---------------------------- Step 2 ----------------------------
 // Shoot photos with webcam
 $left = "http://" . $ip . "/cgi-bin/camctrl.cgi?move=left";
 $right = "http://" . $ip . "/cgi-bin/camctrl.cgi?move=right";
@@ -64,22 +64,27 @@ for($i = 1; $i <= 4; $i++) {
     sleep(2);
     fopen($right, "r");
     sleep(2);
-}
+}*/
 
 // ---------------------------- Step 3 ----------------------------
 // Put them together with GD Library
 $first = imagecreatefromjpeg("images/temp/1.jpeg");
 $second = imagecreatefromjpeg("images/temp/2.jpeg");
-// Copy second onto first 100px from left side, on bottom, at beginning of second image, merge gradient is 50
-imagecopymerge($first, $second, 100, 0, 0, 0, 150, 150, 50);
-
-// Copy third onto already merged image
 $third = imagecreatefromjpeg("images/temp/3.jpeg");
-imagecopymerge($first, $third, 200, 0, 0, 0, 150, 150, 50);
-
-// Copy fourth onto already merged image
 $fourth = imagecreatefromjpeg("images/temp/4.jpeg");
-imagecopymerge($first, $fourth, 300, 0, 0, 0, 150, 150, 50);
+
+// Get width and height
+$width = imagesx($first);
+$height = imagesy($first);
+
+// Make blank space
+$panorama = imagecreate(4 * $width, $height);
+
+// Copy them onto blank space
+imagecopy($panorama, $first, 0, 0, 0, 0, $width, $height);
+imagecopy($panorama, $second, 0 + $width, 0, 0, 0, $width + $width, $height);
+imagecopy($panorama, $third, 0 + 2 * $width, 0, 0, 0, $width, $height);
+imagecopy($panorama, $fourth, 0 + 3* $width, 0, 0, 0, $width, $height);
 
 /*// Delete the temporary files
 for($i = 1; $i <= 4; $i++) {
@@ -88,7 +93,12 @@ for($i = 1; $i <= 4; $i++) {
 
 // ---------------------------- Step 4 ----------------------------
 // Save them into above specified path - Format: "panorama-webcam_d-m-Y_h-i.png" and return to homepage
-imagejpeg($first, "images/" . $day . "/" . $hour . "/panorama-webcam_" . $day . "-" . $hour . "-" . $minute);
+imagejpeg($panorama, "images/" . $day . "/" . $hour . "/panorama-webcam_" . $day . "-" . $hour . "-" . $minute);
 
-// All resources get destroyed automatically when the script ends
+// Destroy resources
+imagedestroy($first);
+imagedestroy($second);
+imagedestroy($third);
+imagedestroy($fourth);
+imagedestroy($panorama);
 ?>
