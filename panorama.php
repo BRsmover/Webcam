@@ -86,10 +86,10 @@ imagecopy($panorama, $second, 0 + $width, 0, 0, 0, $width + $width, $height);
 imagecopy($panorama, $third, 0 + 2 * $width, 0, 0, 0, $width, $height);
 imagecopy($panorama, $fourth, 0 + 3* $width, 0, 0, 0, $width, $height);
 
-/*// Delete the temporary files
+// Delete the temporary files
 for($i = 1; $i <= 4; $i++) {
     unlink("images/temp/" . $i . ".jpeg");
-}*/
+}
 
 // ---------------------------- Step 4 ----------------------------
 // Save them into above specified path - Format: "panorama-webcam_d-m-Y_h-i.png" and return to homepage
