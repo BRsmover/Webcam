@@ -81,10 +81,10 @@ imagecopymerge($first, $third, 200, 0, 0, 0, 150, 150, 50);
 $fourth = imagecreatefromjpeg("images/temp/4.jpeg");
 imagecopymerge($first, $fourth, 300, 0, 0, 0, 150, 150, 50);
 
-// Delete the temporary files
+/*// Delete the temporary files
 for($i = 1; $i <= 4; $i++) {
     unlink("images/temp/" . $i . ".jpeg");
-}
+}*/
 
 // ---------------------------- Step 4 ----------------------------
 // Save them into above specified path - Format: "panorama-webcam_d-m-Y_h-i.png" and return to homepage
