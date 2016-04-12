@@ -11,7 +11,7 @@ $site = getSite();
 
 // Home
 if($site == "home") {
-    echo(parseSite('home', array("panoramas" => getNewestPanorama())));
+    echo(parseSite('home', array()));
 }
 
 // Archiv

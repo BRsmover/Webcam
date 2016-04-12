@@ -76,15 +76,16 @@ $fourth = imagecreatefromjpeg("images/temp/4.jpeg");
 // Get width and height
 $width = imagesx($first);
 $height = imagesy($first);
+$offset = $width - 120;
 
 // Make blank space
-$panorama = imagecreate(4 * $width, $height);
+$panorama = imagecreatetruecolor(4 * $offset, $height);
 
 // Copy them onto blank space
 imagecopy($panorama, $first, 0, 0, 0, 0, $width, $height);
-imagecopy($panorama, $second, 0 + $width, 0, 0, 0, $width + $width, $height);
-imagecopy($panorama, $third, 0 + 2 * $width, 0, 0, 0, $width, $height);
-imagecopy($panorama, $fourth, 0 + 3* $width, 0, 0, 0, $width, $height);
+imagecopy($panorama, $second, 0 + $offset, 0, 0, 0, $width + $width, $height);
+imagecopy($panorama, $third, 0 + 2 * $offset, 0, 0, 0, $width, $height);
+imagecopy($panorama, $fourth, 0 + 3 * $offset, 0, 0, 0, $width, $height);
 
 // Delete the temporary files
 for($i = 1; $i <= 4; $i++) {
@@ -94,6 +95,7 @@ for($i = 1; $i <= 4; $i++) {
 // ---------------------------- Step 4 ----------------------------
 // Save them into above specified path - Format: "panorama-webcam_d-m-Y_h-i.png" and return to homepage
 imagejpeg($panorama, "images/" . $day . "/" . $hour . "/panorama-webcam_" . $day . "-" . $hour . "-" . $minute);
+imagejpeg($panorama, "images/newest.jpeg");
 
 // Destroy resources
 imagedestroy($first);
