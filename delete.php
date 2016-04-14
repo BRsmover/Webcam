@@ -10,13 +10,15 @@ $dateBefore = date("d-m-Y", strtotime("-2 weeks"));
 // Get folders of the days in images except hidden folders and temp directory
 $days = array_diff(scandir("images"), array("..", ".", "temp"));
 print_r($days);
+echo count($days);
 echo "<br>";
 
 // Delete those folders of days that are older than 2 weeks
-for($i = 2; $i < count($days); $i++) {
+for($i = 2; $i <= count($days); $i++) {
     if($days[$i] == $dateBefore) {
         deleteDirectory("images/" . $days[$i]);
     } else {
+        echo $i;
         // Separate dates into day, month and year
         $date = explode("-", $days[$i]);
         $arrayBefore = explode("-", $dateBefore);
@@ -56,4 +58,7 @@ function deleteDirectory($directory) {
         rmdir($directory);
     }
 }
+
+header("Location: index.php");
+die();
 ?>
