@@ -7,41 +7,53 @@ $date = date('d-m-Y');
 // Determine date 14 days ago
 $dateBefore = date("d-m-Y", strtotime("-2 weeks"));
 
-// Get folders in images except hidden folders and temp directory
-$folders = array_diff(scandir("images"), array("..", ".", "temp"));
-print_r($folders);
+// Get folders of the days in images except hidden folders and temp directory
+$days = array_diff(scandir("images"), array("..", ".", "temp"));
+print_r($days);
+echo "<br>";
 
-// Delete those that are older than 2 weeks
-for($i = 2; $i < count($folders); $i++) {
-    if($folders[$i] == $dateBefore) {
-        deleteDirectory($folders[$i]);
+// Delete those folders of days that are older than 2 weeks
+for($i = 2; $i < count($days); $i++) {
+    if($days[$i] == $dateBefore) {
+        deleteDirectory("images/" . $days[$i]);
     } else {
-        $folder = explode("-", $folders[$i]);
+        // Separate dates into day, month and year
+        $date = explode("-", $days[$i]);
         $arrayBefore = explode("-", $dateBefore);
 
         // Check if day is smaller, if month is equal or smaller and if year is equal or smaller
-        if($folder[0] < $arrayBefore[0] && $folder[1] <= $arrayBefore[1] && $folder[2] <= $arrayBefore[2]) {
-            deleteDirectory($folders[$i]);
+        if($date[0] < $arrayBefore[0] && $date[1] <= $arrayBefore[1] && $date[2] <= $arrayBefore[2]) {
+            deleteDirectory("images/" . $days[$i]);
         }
     }
 }
 
 // Check if there are files in the selected directory - if yes delete them recursively
-// -> inspired (not copied) by http://stackoverflow.com/questions/3349753/delete-directory-with-files-in-it
 function deleteDirectory($directory) {
+    echo "Directory: " . $directory . "<br>";
+    // Check if given path is a directory
     if(!is_dir($directory)) {
         echo "That's not a directory!";
-    }
+    } else {
+        // Get hours in the given day
+        $hours = array_diff(scandir($directory), array(".", ".."));
+        print_r($hours);
+        echo "<br>";
 
-    $filesInDir = scandir($directory);
-
-    foreach($filesInDir as $file) {
-        if(is_dir($file)) {
-            self::deleteDirectory($file);
-        } else {
-            unlink($file);
+        foreach($hours as $hour) {
+            $images = array_diff(scandir($directory . "/" . $hour), array(".", ".."));
+            print_r($images);
+            echo "<br>";
+            foreach($images as $image) {
+                if(unlink($directory . "/" . $hour . "/" . $image)) {
+                    echo "Deleting successful!";
+                } else {
+                    echo "Deleting failed!";
+                }
+            }
+            rmdir($directory . "/" . $hour);
         }
+        rmdir($directory);
     }
-    rmdir($directory);
 }
 ?>
