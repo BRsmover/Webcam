@@ -27,7 +27,8 @@ function getImages($day, $hour) {
 }
 
 function getDateForArchive($day, $hour) {
-    $data[] = array("day" => $day, "hour" => $hour);
+    $data = array("day" => $day, "hour" => $hour);
+    print_r($data);
     return $data;
 }
 ?>

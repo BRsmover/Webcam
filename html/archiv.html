@@ -6,6 +6,7 @@
 <p>Bitte wählen Sie den Tag und die Stunde, von welcher Sie Bilder sehen möchten.</p>
 
 {% for image in images %}
+    <h3>{{ image }}</h3>
     <img src="images/{{ date.day }}/{{ date.hour }}/{{ image }}" class="img-responsive" />
 {% endfor %}
 
