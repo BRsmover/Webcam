@@ -4,4 +4,9 @@
 <h1>Archiv</h1>
 <p>Hier finden Sie sämtliche Bilder der vergangenen 14 Tage.</p>
 <p>Bitte wählen Sie den Tag und die Stunde, von welcher Sie Bilder sehen möchten.</p>
+
+{% for image in images %}
+    <img src="images/{{ date.day }}/{{ date.hour }}/{{ image }}" class="img-responsive" />
+{% endfor %}
+
 {% endblock %}

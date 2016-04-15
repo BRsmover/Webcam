@@ -18,4 +18,16 @@ function parseSite($site, $data) {
 	return $template->render($data);
 }
 
+
+// Get images for archive
+function getImages($day, $hour) {
+    $images = array_diff(scandir("images/" . $day . "/" . $hour), array(".", ".."));
+
+    return $images;
+}
+
+function getDateForArchive($day, $hour) {
+    $data[] = array("day" => $day, "hour" => $hour);
+    return $data;
+}
 ?>

@@ -3,7 +3,7 @@
 // Require the Twig Autoloader
 require_once('libraries/Twig/lib/Twig/Autoloader.php');
 // Require the functions
-require_once('siteManagement.php');
+require_once('functions.php');
 
 Twig_Autoloader::register();
 
@@ -16,7 +16,14 @@ if($site == "home") {
 
 // Archiv
 else if($site == "archiv") {
-    echo(parseSite('archiv', array()));
+    $currentDate = date('d-m-Y_H-i');
+     // Split date
+     $underscore = explode("_", $currentDate);
+     $day = $underscore[0];
+     $dash = explode("-", $underscore[1]);
+     $hour = $dash[0];
+
+    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour))));
 }
 
 // About
