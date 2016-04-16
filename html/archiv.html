@@ -9,7 +9,7 @@
 
 <select class="form-control" name="days">
     {% for day in days %}
-    <option href="#">{{ day }}</option>
+    <option href="getHours("{{day}}")">{{ day }}</option>
     {% endfor %}
 </select>
 

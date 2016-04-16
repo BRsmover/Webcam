@@ -35,4 +35,9 @@ function getDays() {
     $days = array_diff(scandir("images/"), array(".", "..", "newest.jpeg", "temp"));
     return $days;
 }
+
+function getHours($day) {
+    $hours = array_diff(scandir("images/" . $day), array(".", ".."));
+    return $hours;
+}
 ?>
