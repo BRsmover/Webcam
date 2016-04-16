@@ -28,7 +28,11 @@ function getImages($day, $hour) {
 
 function getDateForArchive($day, $hour) {
     $data = array("day" => $day, "hour" => $hour);
-    print_r($data);
     return $data;
+}
+
+function getDays() {
+    $days = array_diff(scandir("images/"), array(".", "..", "newest.jpeg", "temp"));
+    return $days;
 }
 ?>

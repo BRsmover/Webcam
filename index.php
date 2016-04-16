@@ -23,7 +23,7 @@ else if($site == "archiv") {
      $dash = explode("-", $underscore[1]);
      $hour = $dash[0];
 
-    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour))));
+    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour), "days" => getDays())));
 }
 
 // About
