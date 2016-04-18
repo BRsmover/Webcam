@@ -31,13 +31,42 @@ function getDateForArchive($day, $hour) {
     return $data;
 }
 
+// Get days for dropdown
 function getDays() {
     $days = array_diff(scandir("images/"), array(".", "..", "newest.jpeg", "temp"));
     return $days;
 }
 
-function getHours($day) {
-    $hours = array_diff(scandir("images/" . $day), array(".", ".."));
+/*// Get date two weeks ago
+function getDateTwoWeeksAgo() {
+    // Determine date 14 days ago
+    $dateBefore = date("d-m-Y", strtotime("-2 weeks"));
+    $formattedDate = date_format("Y-m-d H:i:s", $dateBefore);
+
+    return $formattedDate;
+}*/
+
+/*// Get hours for image titles
+function getHours($day, $hour) {
+    $array[] = $hours;
+    $images = array_diff(scandir("images/" . $day . "/" . $hour), array(".", ".."));
+    foreach($images as $image) {
+        $date = explode("_", $image);
+        $time = explode("-", $date);
+        array_push($hours, $time[3]);
+    }
     return $hours;
 }
+
+// Get minutes for image titles
+function getMinutes($day, $hour) {
+    $array[] = $minutes;
+    $images = array_diff(scandir("images/" . $day . "/" . $hour), array(".", ".."));
+    foreach($images as $image) {
+        $date = explode("_", $image);
+        $time = explode("-", $date);
+        array_push($minutes, $time[4]);
+    }
+    return $minutes;
+}*/
 ?>

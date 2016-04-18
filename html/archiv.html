@@ -5,17 +5,35 @@
 <p>Hier finden Sie sämtliche Bilder der vergangenen 14 Tage.</p>
 <p>Bitte wählen Sie den Tag und die Stunde, von welcher Sie Bilder sehen möchten.</p>
 
-{{ dump(days) }}
+{#{{ dump(days) }}#}
 
-<select class="form-control" name="days">
+<!--<input type="datetime-local" max="{{ date.day }}T{{ date.hour }}" min="">-->
+<form method="get" action="getImages.php?date=date&time=time">
+    <p><b>Wählen Sie den Tag:</b></p>
+    <input class="form-control" type="date" name="date">
+    <p><b>Wählen Sie die Stunde:</b></p>
+    <input class="form-control" type="time" name="time" max="24:00"><br>
+    <input class="btn btn-default" type="submit" value="Submit">
+</form>
+
+<!--<select class="form-control" name="days">
     {% for day in days %}
-    <option href="getHours("{{day}}")">{{ day }}</option>
+    <option href="#")>{{ day }}</option>
     {% endfor %}
-</select>
+</select>-->
 
 {% for image in images %}
     <h3>{{ image }}</h3>
     <img src="images/{{ date.day }}/{{ date.hour }}/{{ image }}" class="img-responsive" />
 {% endfor %}
+
+<div align="center">
+    <nav>
+        <ul class="pager">
+            <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+            <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+</div>
 
 {% endblock %}
