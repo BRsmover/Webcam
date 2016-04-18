@@ -6,6 +6,7 @@
 vor Ort anzusehen. Unten sehen Sie das neueste Bild von heute.</p>
 <p>Im <a href="index.php?site=archiv"><b>Archiv</b></a> können Sie die vergangenen 14 Tage in Revue passieren lassen.</p>
 <p>Falls Sie fragen zu uns haben, werden Sie auf der Seite <a href="index.php?site=about"><b>Über uns</b></a> fündig werden.</p>
+
 <form action="panorama.php" method="post">
     <input class="btn btn-default" type="submit" value="Schiessen Sie jetzt ein Bild!">
 </form>
@@ -13,6 +14,11 @@ vor Ort anzusehen. Unten sehen Sie das neueste Bild von heute.</p>
 <form action="delete.php" method="post">
     <input class="btn btn-default" type="submit" value="Löschen Sie die veralteten Bilder!">
 </form>
+
+{% if success != null %}
+<br>
+<div class="alert alert-success">Das Löschen war erfolgreich!</div>
+{% endif %}
 
 <h2>Das neueste Bild</h2>
 <img class="img-responsive" src="images/newest.jpeg" alt="Neuestes Bild"/>

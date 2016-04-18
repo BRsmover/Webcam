@@ -59,6 +59,6 @@ function deleteDirectory($directory) {
     }
 }
 
-header("Location: index.php");
+header("Location: index.php?success=true");
 die();
 ?>

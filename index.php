@@ -11,7 +11,11 @@ $site = getSite();
 
 // Home
 if($site == "home") {
-    echo(parseSite('home', array()));
+    if(isset($_GET["success"])) {
+        echo(parseSite('home', array("success" => "true")));
+    } else {
+        echo(parseSite('home', array()));
+    }
 }
 
 // Archiv
