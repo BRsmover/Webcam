@@ -1,1 +1,5 @@
 body { padding-bottom: 70px; }
+
+.form-control {
+    width: 25%;
+}
