@@ -5,22 +5,13 @@
 <p>Hier finden Sie sämtliche Bilder der vergangenen 14 Tage.</p>
 <p>Bitte wählen Sie den Tag und die Stunde, von welcher Sie Bilder sehen möchten.</p>
 
-{#{{ dump(days) }}#}
-
-<!--<input type="datetime-local" max="{{ date.day }}T{{ date.hour }}" min="">-->
 <form method="get" action="getImages.php?date=date&time=time">
     <p><b>Wählen Sie den Tag:</b></p>
-    <input class="form-control" type="date" name="date">
+    <input class="form-control" type="date" name="date" min="{{ dateTwoWeeksAgo }}">
     <p><b>Wählen Sie die Stunde:</b></p>
-    <input class="form-control" type="time" name="time" max="24:00"><br>
+    <input class="form-control" type="time" name="time"><br>
     <input class="btn btn-default" type="submit" value="Submit">
 </form>
-
-<!--<select class="form-control" name="days">
-    {% for day in days %}
-    <option href="#")>{{ day }}</option>
-    {% endfor %}
-</select>-->
 
 {% for image in images %}
     <h3>{{ image }}</h3>

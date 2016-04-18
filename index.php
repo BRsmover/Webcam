@@ -23,18 +23,23 @@ else if($site == "archiv") {
      $dash = explode("-", $underscore[1]);
      $hour = $dash[0];
 
-    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour))));
+    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour), "dateTwoWeeksAgo" => getDateTwoWeeksAgo())));
 }
 
 // Archiv not current day
 else if($site == "archiv_individual") {
     $day = $_GET["date"];
     $hour = $_GET["hour"];
-    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour))));
+    echo(parseSite('archiv', array("images" => getImages($day, $hour), "date" => getDateForArchive($day, $hour), "dateTwoWeeksAgo" => getDateTwoWeeksAgo())));
 }
 
 // About
 else if($site == "about") {
     echo(parseSite('about', array()));
+}
+
+// Error
+else {
+    echo(parseSite('error', array()));
 }
 ?>

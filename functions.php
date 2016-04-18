@@ -1,4 +1,5 @@
 <?php
+ob_start();
 
 // Get current site
 function getSite() {
@@ -22,8 +23,12 @@ function parseSite($site, $data) {
 // Get images for archive
 function getImages($day, $hour) {
     $images = array_diff(scandir("images/" . $day . "/" . $hour), array(".", ".."));
-
-    return $images;
+    if(!empty($images)) {
+        return $images;
+     } else {
+        header("Location: index.php?site=error");
+        die();
+     }
 }
 
 function getDateForArchive($day, $hour) {
@@ -35,5 +40,11 @@ function getDateForArchive($day, $hour) {
 function getDays() {
     $days = array_diff(scandir("images/"), array(".", "..", "newest.jpeg", "temp"));
     return $days;
+}
+
+function getDateTwoWeeksAgo() {
+    // Determine date 14 days ago
+    $dateBefore = date("m/d/Y", strtotime("-2 weeks"));
+    return $dateBefore;
 }
 ?>

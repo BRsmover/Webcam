@@ -11,9 +11,7 @@ $formattedDate = date("d-m-Y", strtotime($date));
 $separateTime = explode(":", $time);
 $hour = $separateTime[0];
 
-// Get new images and head to archive
-$images = array_diff(scandir("images/" . $date . "/" . $hour), array(".", ".."));
-
+// Head to archive
 header("Location: index.php?site=archiv_individual&date={$formattedDate}&hour={$hour}");
 die();
 ?>
